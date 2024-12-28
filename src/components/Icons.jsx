@@ -49,7 +49,7 @@ const Icons = ({id, userid}) => {
         }
 
         if (commentText.trim() === "") return;  
-
+        
         
         await addDoc(collection(db, "posts", id, "comments"), {
             username: session.user.username,

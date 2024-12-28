@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 import { PiDotsThreeBold } from "react-icons/pi";
 
-// import Image from 'next/image';
+
 const Sidebar = () => {
   const { data: session } = useSession()
   

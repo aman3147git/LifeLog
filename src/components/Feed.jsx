@@ -24,7 +24,7 @@ const Feed = async () => {
         <Post key={post.id} id={post.id} post={post} />
       ))}
     </div>
-  );
+  );  
 };
 
 export default Feed;

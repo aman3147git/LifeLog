@@ -82,7 +82,7 @@ const Input = () => {
         {session && (
           <img
             src={session.user.image}
-            alt=""
+            alt="CN"
             className="w-10 h-10 rounded-full ml-2"
           />
         )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { PiDotsThreeBold } from "react-icons/pi";
 import Icons from './Icons';
-import Image from 'next/image';
+
 const Post = ({post,id}) => {
   return (
     <div className='p-3 border-b w-full '>
