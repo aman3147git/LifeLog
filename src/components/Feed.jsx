@@ -1,3 +1,4 @@
+"use client";
 import { app } from "@/firebase";
 import {
   getFirestore,
@@ -6,17 +7,26 @@ import {
   orderBy,
   getDocs,
 } from "firebase/firestore";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "./Post";
 
-const Feed = async () => {
-  const db = getFirestore(app);
-  const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));     //accessing data from firestore
-  let data = [];
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    data.push({ id: doc.id, ...doc.data() });
-  });
+const Feed = () => {
+  const [data, setData] = useState([]);  
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const db = getFirestore(app);
+      const q = query(collection(db, "posts"), orderBy("timestamp", "desc")); // Fetch posts ordered by timestamp
+      let posts = [];
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        posts.push({ id: doc.id, ...doc.data() });
+      });
+      setData(posts);  
+    };
+
+    fetchPosts();
+  }, []); 
 
   return (
     <div>
@@ -24,7 +34,10 @@ const Feed = async () => {
         <Post key={post.id} id={post.id} post={post} />
       ))}
     </div>
-  );  
+  );
 };
 
 export default Feed;
+
+
+
